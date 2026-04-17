@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- ── PHASE 1 FIX: Move Google Fonts from CSS @import to preload link ──
+         CSS @import creates a render-blocking waterfall. Moving here reduces
+         LCP/FCP by eliminating the cascade: CSS download → parse → @import → font download.
+         This alone can save 500ms–1.5s on first paint. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Tiro+Bangla:ital@0;1&display=swap"
+      onload="this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Tiro+Bangla:ital@0;1&display=swap" />
+    </noscript>
+
+    <!-- ── DNS-prefetch for critical third-party origins ── -->
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+    <link rel="dns-prefetch" href="https://maps.gstatic.com" />
+    <link rel="dns-prefetch" href="https://wa.me" />
+    <link rel="dns-prefetch" href="https://formspree.io" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+
+    <!-- ── Primary Meta ── -->
+    <title>Khelar Mala — Where Play Meets Progress | Special Education Centre, Siliguri</title>
+    <meta name="description" content="North Bengal's most trusted intervention centre for children with special needs. 27+ years of Play Therapy by Sucharita Dasgupta. ASD, ADHD, Down Syndrome & more." />
+    <meta name="author" content="Khelar Mala Intervention Centre" />
+    <meta name="keywords" content="Khelar Mala, Play Therapy, special education, Siliguri, children with special needs, autism, ADHD, Down Syndrome, intervention centre, North Bengal, Sucharita Dasgupta, speech therapy, occupational therapy" />
+    <link rel="canonical" href="https://www.khelarmala.in" />
+
+    <!-- ── Favicon ── -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0D7377" />
+
+    <!-- ── Open Graph / WhatsApp / Facebook ── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.khelarmala.in" />
+    <meta property="og:title" content="Khelar Mala — Where Play Meets Progress" />
+    <meta property="og:description" content="North Bengal's most trusted intervention centre for children with special needs. 27+ years of Play Therapy. 9 specialized therapies. 950+ journeys shared." />
+    <meta property="og:image" content="https://www.khelarmala.in/og-image.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Khelar Mala Intervention Centre — Where Play Meets Progress, Siliguri" />
+    <meta property="og:site_name" content="Khelar Mala Intervention Centre" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- ── Twitter / X ── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@khelarmala" />
+    <meta name="twitter:title" content="Khelar Mala — Where Play Meets Progress" />
+    <meta name="twitter:description" content="North Bengal's most trusted intervention centre for children with special needs. Play Therapy since 1997." />
+    <meta name="twitter:image" content="https://www.khelarmala.in/og-image.webp" />
+
+    <!-- ── Schema.org — LocalBusiness + MedicalBusiness ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["MedicalBusiness", "LocalBusiness"],
+          "@id": "https://www.khelarmala.in/#organization",
+          "name": "Khelar Mala Intervention Centre",
+          "alternateName": ["Khelar Mala", "খেলার মেলা"],
+          "url": "https://www.khelarmala.in",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.khelarmala.in/favicon-32x32.png",
+            "width": 32,
+            "height": 32
+          },
+          "image": "https://www.khelarmala.in/og-image.webp",
+          "description": "North Bengal's most trusted intervention centre for children with special needs. Play Therapy, Speech Therapy, Occupational Therapy, and more. Serving families since 1997.",
+          "foundingDate": "1997",
+          "numberOfEmployees": { "@type": "QuantitativeValue", "value": "10" },
+          "founder": {
+            "@type": "Person",
+            "name": "Sucharita Dasgupta",
+            "jobTitle": "Special Educator, Founder & Director",
+            "alumniOf": "Special Education"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Arabinda Pally",
+            "addressLocality": "Siliguri",
+            "addressRegion": "West Bengal",
+            "postalCode": "734001",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "26.7189",
+            "longitude": "88.4299"
+          },
+          "hasMap": "https://maps.app.goo.gl/tiLnH18U23SokhN58",
+          "telephone": "+919474905039",
+          "email": "khelarmala@gmail.com",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "10:00",
+              "closes": "20:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/khelarmala",
+            "https://www.facebook.com/share/1FZMHwKAJJ/",
+            "https://x.com/khelarmala"
+          ],
+          "medicalSpecialty": ["Pediatric Special Education", "Play Therapy", "Speech Therapy", "Occupational Therapy"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Therapeutic Programs",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Art Therapy", "url": "https://www.khelarmala.in/therapies/art-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dance Therapy", "url": "https://www.khelarmala.in/therapies/dance-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Music Therapy", "url": "https://www.khelarmala.in/therapies/music-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Language Therapy", "url": "https://www.khelarmala.in/therapies/language-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Speech Therapy", "url": "https://www.khelarmala.in/therapies/speech-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cognitive Therapy", "url": "https://www.khelarmala.in/therapies/cognitive-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Occupational Therapy", "url": "https://www.khelarmala.in/therapies/occupational-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Behavioral Therapy", "url": "https://www.khelarmala.in/therapies/behavioral-therapy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Yoga & Meditation", "url": "https://www.khelarmala.in/therapies/yoga-meditation" } }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.khelarmala.in/#website",
+          "url": "https://www.khelarmala.in",
+          "name": "Khelar Mala",
+          "publisher": { "@id": "https://www.khelarmala.in/#organization" },
+          "inLanguage": ["en-IN", "bn-IN"],
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": { "@type": "EntryPoint", "urlTemplate": "https://www.khelarmala.in/resources?q={search_term_string}" },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.khelarmala.in/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What conditions does Khelar Mala treat?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Khelar Mala specialises in children with Autism Spectrum Disorder (ASD), ADHD/ADD, Down Syndrome, Cerebral Palsy, Speech & Language Disorders, Learning Disabilities, Sensory Processing Disorder, Hearing Impairment, and Global Developmental Delay."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How old must a child be to join Khelar Mala?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Khelar Mala serves children from 18 months to 18 years. Early intervention is most effective; we recommend contacting us as soon as any developmental concern is noticed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there a free initial consultation at Khelar Mala?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We offer an initial conversation at no charge to understand your child's needs and explain how our therapies can help. Call +91 94749 05039 or WhatsApp to schedule."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is Khelar Mala located?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Khelar Mala Intervention Centre is located at Arabinda Pally, Siliguri, West Bengal – 734001. We serve families from Siliguri, Darjeeling, Jalpaiguri, and all of North Bengal."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What therapies does Khelar Mala offer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We offer 9 integrated therapies: Art Therapy, Dance Therapy, Music Therapy, Language Therapy, Speech Therapy, Cognitive Therapy, Occupational Therapy, Behavioral Therapy, and Yoga & Meditation — all unified through our Play Therapy framework."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- ── Google Analytics 4 (G-KL60BZTBRS) + Google Ads (AW-17985456869) ── -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL60BZTBRS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KL60BZTBRS', {
+        page_path: window.location.pathname,
+        send_page_view: true,
+        transport_url: 'https://www.google-analytics.com'
+      });
+      gtag('config', 'AW-17985456869');
+    </script>
+
+    <!-- ── Meta Pixel (1886235975211577) ── -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1886235975211577');
+      fbq('track', 'PageView');
+    </script>
+
+  </head>
+
+  <body>
+    <!-- ── Meta Pixel noscript fallback (must be in body, not head) ── -->
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1886235975211577&ev=PageView&noscript=1"
+        alt="" />
+    </noscript>
+    <div id="root"></div>
+
+    <!-- ── iOS viewport-height fix ── -->
+    <script>
+      (function() {
+        function setVh() {
+          var vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', vh + 'px');
+        }
+        setVh();
+        window.addEventListener('resize', setVh);
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

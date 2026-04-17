@@ -1,0 +1,21 @@
+{
+  "name": "Khelar Mala — Where Play Meets Progress",
+  "short_name": "Khelar Mala",
+  "description": "North Bengal's most trusted intervention centre for children with special needs. Play Therapy since 1997.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFBF7",
+  "theme_color": "#0D7377",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

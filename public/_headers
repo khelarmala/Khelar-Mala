@@ -1,0 +1,33 @@
+/*
+  https://khelarmala.in/*
+*/
+
+# ── PHASE 1 FIX: Critical security headers (were disabled in /* */ block) ──
+
+https://khelarmala.in/*
+  # Prevent clickjacking — deny all iframe embedding of this site
+  X-Frame-Options: SAMEORIGIN
+
+  # Prevent MIME type sniffing
+  X-Content-Type-Options: nosniff
+
+  # Strict referrer — sends full URL only on same-origin, just origin on cross-origin HTTPS
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disable outdated browser XSS filter (modern browsers don't need it)
+  X-XSS-Protection: 0
+
+  # Restrict browser features not needed by this site
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+  # Content Security Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.googleadservices.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://analytics.google.com https://www.facebook.com https://connect.facebook.net https://googleads.g.doubleclick.net https://www.googleadservices.com; img-src 'self' data: https: blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;
+
+  # Cache static assets aggressively
+  Cache-Control: public, max-age=31536000, immutable
+
+https://khelarmala.in/
+  Cache-Control: public, max-age=0, must-revalidate
+
+https://khelarmala.in/index.html
+  Cache-Control: public, max-age=0, must-revalidate

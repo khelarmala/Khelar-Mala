@@ -1,0 +1,475 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   KHELAR MALA — Global Stylesheet
+   2 fonts only: Playfair Display (headings) · Lato (body)
+   Fluid typography with clamp()  ·  prefers-reduced-motion guard
+   iOS vh fix  ·  Rationalized 12-token colour palette
+   ─────────────────────────────────────────────────────────────────────────────*/
+
+/* ── Fonts loaded via <link rel="preload"> in index.html to prevent render-blocking ──
+   DO NOT add @import for fonts here — it creates a CSS parse → @import → font cascade
+   that significantly delays LCP/FCP. See index.html <head> for the preload tags. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS CUSTOM PROPERTIES ─────────────────────────────────────────────────*/
+@layer base {
+  :root {
+    /* ── Light Mode ── */
+    --background:        35 60% 98%;
+    --foreground:        240 10% 12%;
+
+    /* Brand — Teal */
+    --primary:           180 50% 24%;
+    --primary-foreground: 35 60% 98%;
+    --teal-deep:         180 55% 20%;
+    --teal-primary:      180 48% 32%;
+    --teal-medium:       180 43% 42%;
+    --teal-light:        180 40% 93%;
+    --teal-pale:         180 35% 97%;
+
+    /* Brand — Orange accent */
+    --accent:            25 75% 54%;
+    --accent-foreground: 35 60% 98%;
+    --orange-deep:       25 68% 47%;
+    --orange-primary:    25 75% 55%;
+    --orange-light:      25 65% 92%;
+
+    /* Warm neutrals */
+    --cream:             35 60% 98%;
+    --cream-warm:        30 55% 96%;
+    --charcoal:          240 10% 12%;
+    --slate:             220 8% 46%;
+
+    /* Therapy palette — kept minimal */
+    --gold:              40 72% 50%;
+    --gold-light:        50 60% 72%;
+    --yellow-bright:     45 92% 63%;
+    --purple-primary:    252 25% 47%;
+    --blue-bright:       213 65% 57%;
+    --pink-soft:         330 75% 85%;
+    --green-fresh:       88 45% 48%;
+
+    /* shadcn tokens */
+    --card:              0 0% 100%;
+    --card-foreground:   240 10% 12%;
+    --popover:           0 0% 100%;
+    --popover-foreground: 240 10% 12%;
+    --secondary:         180 40% 93%;
+    --secondary-foreground: 180 50% 24%;
+    --muted:             30 25% 93%;
+    --muted-foreground:  220 8% 46%;
+    --destructive:       0 84% 60%;
+    --destructive-foreground: 35 60% 98%;
+    --border:            30 20% 88%;
+    --input:             30 20% 88%;
+    --ring:              180 48% 32%;
+    --radius:            0.75rem;
+
+    /* Sidebar (kept for shadcn compat) */
+    --sidebar-background:  35 60% 98%;
+    --sidebar-foreground:  240 10% 12%;
+    --sidebar-primary:     180 50% 24%;
+    --sidebar-primary-foreground: 35 60% 98%;
+    --sidebar-accent:      180 40% 93%;
+    --sidebar-accent-foreground: 180 50% 24%;
+    --sidebar-border:      30 20% 88%;
+    --sidebar-ring:        180 48% 32%;
+
+    /* Footer */
+    --footer-bg:         180 55% 18%;
+    --footer-fg:         35 60% 95%;
+
+    /* iOS-safe viewport height */
+    --vh: 1vh;
+  }
+
+  .dark {
+    --background:        210 25% 8%;
+    --foreground:        35 30% 93%;
+    --cream:             210 25% 8%;
+    --cream-warm:        210 20% 10%;
+
+    --primary:           174 58% 39%;
+    --primary-foreground: 210 25% 8%;
+    --teal-deep:         174 58% 32%;
+    --teal-primary:      174 50% 42%;
+    --teal-medium:       174 40% 50%;
+    --teal-light:        210 18% 16%;
+    --teal-pale:         210 20% 11%;
+
+    --accent:            30 80% 55%;
+    --accent-foreground: 210 25% 8%;
+    --orange-deep:       30 70% 48%;
+    --orange-primary:    30 80% 55%;
+    --orange-light:      210 15% 15%;
+
+    --gold:              45 80% 55%;
+    --gold-light:        50 50% 40%;
+    --yellow-bright:     45 80% 55%;
+    --purple-primary:    252 30% 60%;
+    --blue-bright:       213 70% 65%;
+    --pink-soft:         330 50% 65%;
+    --green-fresh:       88 40% 55%;
+
+    --charcoal:          35 30% 93%;
+    --slate:             220 12% 65%;
+
+    --card:              210 25% 8%;    /* ← same as background: no seam between sections */
+    --card-foreground:   35 30% 93%;
+    --popover:           210 22% 10%;  /* slightly lighter for popovers/dropdowns */
+    --popover-foreground: 35 30% 93%;
+    --secondary:         210 18% 16%;
+    --secondary-foreground: 35 30% 93%;
+    --muted:             210 15% 18%;
+    --muted-foreground:  220 12% 60%;
+    --destructive:       0 62% 50%;
+    --destructive-foreground: 35 60% 98%;
+    --border:            210 15% 22%;  /* slightly lighter so cards are visible against bg */
+    --input:             210 15% 18%;
+    --ring:              174 58% 39%;
+
+    --sidebar-background: 210 25% 8%;
+    --sidebar-foreground: 35 30% 93%;
+    --sidebar-primary:    174 58% 39%;
+    --sidebar-primary-foreground: 210 25% 8%;
+    --sidebar-accent:     210 18% 16%;
+    --sidebar-accent-foreground: 35 30% 93%;
+    --sidebar-border:     210 15% 20%;
+    --sidebar-ring:       174 58% 39%;
+
+    --footer-bg:         210 30% 6%;
+    --footer-fg:         35 30% 90%;
+  }
+}
+
+/* ─── BASE RESETS & ROOT ─────────────────────────────────────────────────────*/
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* iOS vh fix — updated by inline JS in index.html */
+    --safe-vh: calc(var(--vh, 1vh) * 100);
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Prevent horizontal scroll from decorative blobs */
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    @apply font-bold tracking-tight;
+  }
+
+  /* ── Focus styles — WCAG AA compliant, visually clean ──
+     Uses outline (not box-shadow ring) so no background-color bleed.
+     focus:not(:focus-visible) suppresses the ring for mouse/touch users.   */
+  *:focus {
+    outline: none;
+  }
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  /* Override shadcn ring utilities — they conflict with the outline approach */
+  .focus-visible\:ring-2:focus-visible,
+  .focus-visible\:ring-ring:focus-visible,
+  .focus-visible\:ring-offset-2:focus-visible {
+    --tw-ring-shadow: none;
+    box-shadow: none;
+  }
+}
+
+/* ─── FLUID TYPOGRAPHY SCALE (clamp = no breakpoint snaps) ──────────────────*/
+@layer base {
+  :root {
+    --text-xs:       clamp(0.7rem,   0.5rem + 0.4vw,  0.8rem);
+    --text-sm:       clamp(0.85rem,  0.7rem + 0.4vw,  0.95rem);
+    --text-base:     clamp(1rem,     0.9rem + 0.3vw,  1.1rem);
+    --text-lg:       clamp(1.1rem,   0.95rem + 0.5vw, 1.25rem);
+    --text-xl:       clamp(1.25rem,  1rem + 0.7vw,    1.5rem);
+    --text-2xl:      clamp(1.5rem,   1.2rem + 1vw,    1.875rem);
+    --text-3xl:      clamp(1.875rem, 1.4rem + 1.5vw,  2.25rem);
+    --text-4xl:      clamp(2.25rem,  1.6rem + 2vw,    3rem);
+    --text-5xl:      clamp(2.75rem,  2rem + 2.5vw,    3.75rem);
+    --text-hero:     clamp(2.5rem,   1.8rem + 3.5vw,  5rem);
+  }
+}
+
+/* ─── COMPONENT LAYER ────────────────────────────────────────────────────────*/
+@layer components {
+  /* Layout helpers */
+  .container-custom {
+    @apply max-w-[1200px] mx-auto px-5 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-10 md:py-14 lg:py-16;
+  }
+
+  /* ── Section title badges ── */
+  .section-badge {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-secondary text-primary text-base font-bold transition-all duration-200 hover:shadow-md hover:scale-105;
+  }
+  .section-badge:hover {
+    background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--orange-deep)) 100%);
+    color: hsl(var(--accent-foreground));
+  }
+  .section-badge-accent {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/10 text-accent text-base font-bold transition-all duration-200 hover:shadow-md hover:scale-105;
+  }
+  .section-badge-accent:hover {
+    background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--orange-deep)) 100%);
+    color: hsl(var(--accent-foreground));
+  }
+
+  /* ── Gradient text utilities ── */
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--teal-medium)) 100%);
+  }
+  .dark .text-gradient-teal {
+    background-image: linear-gradient(135deg, hsl(174 58% 45%) 0%, hsl(174 50% 58%) 100%);
+  }
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--accent)) 100%);
+  }
+  .text-gradient-orange {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--orange-deep)) 0%, hsl(var(--accent)) 100%);
+  }
+
+  /* ── Navigation overlay glass (drawer + therapies dropdown) ── */
+  :root {
+    --nav-bg:         rgba(250, 250, 252, 0.97);   /* cool neutral white            */
+    --nav-section:    rgba(242, 244, 247, 0.88);   /* cool light gray band          */
+    --nav-border:     rgba(0, 0, 0, 0.08);         /* neutral border                */
+    --nav-border-sub: rgba(0, 0, 0, 0.05);         /* subtle separator              */
+    --nav-shadow:     0 24px 64px rgba(0,0,0,0.11),
+                      0  6px 20px rgba(0,0,0,0.07),
+                      inset 0 1px 0 rgba(255,255,255,0.95);
+  }
+  .dark {
+    --nav-bg:         rgba(8, 14, 26, 0.97);       /* deep navy — matches dark bg   */
+    --nav-section:    rgba(255, 255, 255, 0.04);
+    --nav-border:     rgba(255, 255, 255, 0.08);
+    --nav-border-sub: rgba(255, 255, 255, 0.06);
+    --nav-shadow:     0 24px 64px rgba(0,0,0,0.42),
+                      0  6px 20px rgba(0,0,0,0.22),
+                      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* ── Glassmorphism base ── */
+  .glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+  .dark .glass {
+    background: rgba(15, 25, 40, 0.55);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* ── Card elevation — glassmorphism style ── */
+  .card-elevated {
+    @apply rounded-2xl transition-all duration-300;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255,255,255,0.7);
+  }
+  .dark .card-elevated {
+    background: rgba(20, 35, 55, 0.65);
+    border-color: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  /* Unified card hover — one consistent language site-wide */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px -12px hsl(var(--primary) / 0.18), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+  .dark .card-hover:hover {
+    @apply border-primary/30;
+    box-shadow: 0 20px 48px -12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  /* ── Link underline animation ── */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute w-full scale-x-0 h-0.5 bottom-0 left-0 origin-right transition-transform duration-300;
+    background: hsl(var(--primary));
+  }
+  .link-underline:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+
+  /* Nav link active/hover underline */
+  .nav-link { @apply relative; }
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 scale-x-0 origin-left transition-transform duration-300;
+    background: hsl(var(--primary));
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after { @apply scale-x-100; }
+
+  /* ── WhatsApp button ── */
+  .whatsapp-button {
+    @apply fixed z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300;
+    /* Position: above mobile CTA bar on small screens, standard on md+ */
+    bottom: calc(4rem + 1rem); /* 64px bar + 16px gap */
+    right: 1.5rem;
+    background-color: #25D366;
+  }
+  @media (min-width: 768px) {
+    .whatsapp-button {
+      bottom: 1.5rem;
+      right: 1.5rem;
+    }
+  }
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 32px rgba(37, 211, 102, 0.45);
+  }
+  .dark .whatsapp-button {
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.3), 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── Image dark mode glow ── */
+  .dark .img-glow {
+    @apply ring-1 ring-primary/20;
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.1);
+  }
+
+  /* ── Wave divider ── */
+  .wave-divider { @apply relative overflow-hidden; }
+  .wave-divider::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full;
+    height: 60px;
+    background: hsl(var(--background));
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  /* ── Therapy card top-border gradients ── */
+  .therapy-art      { @apply bg-gradient-to-br from-pink-soft/20 to-card; }
+  .therapy-dance    { @apply bg-gradient-to-br from-orange-light/50 to-card; }
+  .therapy-music    { @apply bg-gradient-to-br from-yellow-bright/20 to-card; }
+  .therapy-language { @apply bg-gradient-to-br from-teal-light to-card; }
+  .therapy-speech   { @apply bg-gradient-to-br from-blue-bright/20 to-card; }
+  .therapy-cognitive { @apply bg-gradient-to-br from-purple/20 to-card; }
+  .therapy-occupational { @apply bg-gradient-to-br from-green-fresh/20 to-card; }
+  .therapy-behavioral   { @apply bg-gradient-to-br from-teal-medium/20 to-card; }
+  .therapy-yoga         { @apply bg-gradient-to-br from-gold-light/30 to-card; }
+}
+
+/* ─── KEYFRAME ANIMATIONS ────────────────────────────────────────────────────*/
+@layer components {
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-10px) rotate(2deg); }
+  }
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-15px) rotate(-2deg); }
+  }
+  .animate-float         { animation: float 6s ease-in-out infinite; }
+  .animate-float-delayed { animation: float-delayed 7s ease-in-out infinite 1s; }
+}
+
+/* ─── PREFERS-REDUCED-MOTION GUARD ──────────────────────────────────────────*/
+/* Disables ALL CSS animations / transitions for users who request it.
+   Framer Motion handles its own guard via useReducedMotion() hook.        */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+    scroll-behavior:      auto !important;
+  }
+  .animate-ping,
+  .animate-float,
+  .animate-float-delayed {
+    animation: none !important;
+  }
+}
+
+/* ─── UTILITIES ──────────────────────────────────────────────────────────────*/
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Safe bottom padding to avoid content hiding behind mobile CTA bar */
+  .pb-safe-cta { padding-bottom: calc(4rem + env(safe-area-inset-bottom)); }
+
+  /* Scrollbar styling */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ─── PERFORMANCE HINTS ──────────────────────────────────────────────────────*/
+/* Promote key animated/fixed elements to GPU composite layers                 */
+.fixed,
+[style*="position: fixed"],
+[style*="position:fixed"] {
+  /* GPU layer hint for fixed-position elements */
+  transform: translateZ(0);
+}
+
+/* Chatbot trigger button — frequent scale/opacity animations */
+.fixed.z-50 {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Framer Motion exit/enter animations — hint browser ahead of time */
+[data-framer-component-type] {
+  will-change: transform, opacity;
+}
+
+/* Blob/decorative gradient animations — contain paint within element */
+.animate-float,
+.animate-float-delayed {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ── Smooth image loading appearance ──────────────────────────────────────── */
+img {
+  /* Prevent layout shift as images load */
+  content-visibility: auto;
+}
+
+img[loading="lazy"] {
+  /* Subtle fade-in for lazy loaded images */
+  transition: opacity 0.3s ease;
+}
+
+/* ── Snap scroll for therapy horizontal lists (mobile) ────────────────────── */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-snap-x > * {
+  scroll-snap-align: start;
+}
